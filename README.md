@@ -52,17 +52,69 @@
 
 ```
 import os
-#根据地址码，出生日期码，性别生成身份证号码字典函数。性别可以为空def generator(address_code,birthday_code,sex=""):    id_list=[]
-    #如果地址码不等于6位    if len(address_code)!=6:        print "address code error"        return
-    #如果出生日期码不等于8位    if len(birthday_code)!=8:        print "birthday code error"        return
-    #如果性别为空的话则不对顺序码进行奇偶判断    if sex == "":        for i in range(1,1000):            i = repair_i(str(i))            id = address_code + birthday_code + i + cheak(address_code + birthday_code + i)            id_list.append(id)    #如果性别位男，则对顺序码进行奇偶判断，如果顺序码为偶则跳过
-    elif sex == "male":        for i in range(1,1000):            if i%2 == 0:                pass            else:                i = repair_i(str(i))                id = address_code + birthday_code + i + cheak(address_code + birthday_code + i)                id_list.append(id)
-    #如果性别位女，则对顺序码进行奇偶判断，如果顺序码为奇则跳过    elif sex == "famale":        for i in range(1,1000):            if i%2 != 0:                pass            else:                i = repair_i(str(i))                id = address_code + birthday_code + i + cheak(address_code + birthday_code + i)                id_list.append(id)    return id_list
-#进行校验位计算的方法def cheak(s):    sum = int(s[0]) * 7 + int(s[1]) * 9 + int(s[2]) * 10 + int(s[3]) * 5 + int(s[4]) * 8 + int(s[5]) * 4 + int(        s[6]) * 2 + int(s[7]) * 1 + int(s[8]) * 6 + int(s[9]) * 3 + int(s[10]) * 7 + int(s[11]) * 9 + int(        s[12]) * 10 + int(s[13]) * 5 + int(s[14]) * 8 + int(s[15]) * 4 + int(s[16]) * 2    return '10X98765432'[sum % 11]
-#对顺序码进行补全def repair_i(i):
-    #如果顺序码长度为1，则在左边补“00”    if len(i) == 1:        i = "00" + I
-    #如果顺序码长度为2，则在左边补“0”    elif len(i) == 2:        i = "0" + i    return idef main():    address = "110105"                          #地址码    birthday = "20000101"                       #出生日期码    sex = "male"                                #性别    id_list = generator(address,birthday,sex)
-    #用系统的echo命令和“>>”输出流，将字典列表中的每个身份证号码输出到txt    for i in range(len(id_list)):        os.system("echo " + id_list[i] + " >> " + "../IDCard_dictionary/" + address + birthday + sex + ".txt")if __name__ == "__main__":    main()
+#根据地址码，出生日期码，性别生成身份证号码字典函数。性别可以为空
+def generator(address_code,birthday_code,sex=""):
+    id_list=[]
+    #如果地址码不等于6位
+    if len(address_code)!=6:
+        print "address code error"
+                    return
+    #如果出生日期码不等于8位
+    if len(birthday_code)!=8:
+        print "birthday code error"
+            return
+    #如果性别为空的话则不对顺序码进行奇偶判断
+    if sex == "":
+        for i in range(1,1000):
+            i = repair_i(str(i))
+                id = address_code + birthday_code + i + cheak(address_code + birthday_code + i)
+                id_list.append(id)
+    #如果性别位男，则对顺序码进行奇偶判断，如果顺序码为偶则跳过
+    elif sex == "male":
+        for i in range(1,1000):
+            if i%2 == 0:
+                pass            
+            else:
+                i = repair_i(str(i))
+                id = address_code + birthday_code + i + cheak(address_code + birthday_code + i)
+                id_list.append(id)
+    #如果性别位女，则对顺序码进行奇偶判断，如果顺序码为奇则跳过
+    elif sex == "fmale":
+        for i in range(1,1000):
+            if i%2 != 0:
+                pass
+            else:
+                i = repair_i(str(i))
+                id = address_code + birthday_code + i + cheak(address_code + birthday_code + i)
+                id_list.append(id)
+                return id_list
+
+#进行校验位计算的方法
+def cheak(s):
+    sum = int(s[0]) * 7 + int(s[1]) * 9 + int(s[2]) * 10 + int(s[3]) * 5 + int(s[4]) * 8 + int(s[5]) * 4 + int(s[6]) * 2 + int(s[7]) * 1 + int(s[8]) * 6 + int(s[9]) * 3 + int(s[10]) * 7 + int(s[11]) * 9 + int(s[12]) * 10 + int(s[13]) * 5 + int(s[14]) * 8 + int(s[15]) * 4 + int(s[16]) * 2
+    return '10X98765432'[sum % 11]
+
+#对顺序码进行补全
+def repair_i(i):
+    #如果顺序码长度为1，则在左边补“00”
+    if len(i) == 1:
+        i = "00" + I
+    #如果顺序码长度为2，则在左边补“0”
+    elif len(i) == 2:
+        i = "0" + i
+     return i
+
+def main():
+    address = "110105"                          #地址码
+    birthday = "20000101"                       #出生日期码
+    sex = "male"                                #性别
+    id_list = generator(address,birthday,sex)
+    #用系统的echo命令和“>>”输出流，将字典列表中的每个身份证号码输出到txt
+    for i in range(len(id_list)):
+        os.system("echo " + id_list[i] + " >> " + "../IDCard_dictionary/" + address + birthday + sex + ".txt")
+
+if __name__ == "__main__":
+    main()
 ```
 
 ## 0x05 写在最后
