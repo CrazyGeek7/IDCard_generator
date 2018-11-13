@@ -79,7 +79,7 @@ def generator(address_code,birthday_code,sex=""):
                 id = address_code + birthday_code + i + cheak(address_code + birthday_code + i)
                 id_list.append(id)
     #如果性别位女，则对顺序码进行奇偶判断，如果顺序码为奇则跳过
-    elif sex == "fmale":
+    elif sex == "female":
         for i in range(1,1000):
             if i%2 != 0:
                 pass
